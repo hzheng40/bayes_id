@@ -32,6 +32,10 @@ from vesc_msgs.msg import VescStateStamped
 import numpy as np
 
 class TrajCollector(Node):
+    """
+    With single track model, need 7 states:
+    [x, y, steer, long_v, yaw, yawrate, slip_angle]
+    """
     def __init__(self):
         super().__init__('traj_collector')
 
@@ -55,7 +59,7 @@ class TrajCollector(Node):
         self.odom_y = []
         self.odom_yaw = []
 
-        self.declare_parameter('drive_topic', '/drive')
+        self.declare_parameter('drive_topic', '/ackermann_cmd')
         self.declare_parameter('odom_topic', '/odom')
         self.declare_parameter('imu_topic', '/sensors/imu/raw')
         self.declare_parameter('pose_topic', '/pf/viz/inferred_pose')
