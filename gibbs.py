@@ -20,7 +20,7 @@ if __name__ == '__main__':
     # constants
     max_iter = 10000
     # [mu, C_Sf, C_Sr, lf, lr, h, m, I]
-    theta_init_mean = np.array([5.0, 1.0, 1.0, 1.5, 1.0, 1.0, 5.0, 1.0])
+    theta_init_mean = np.array([1.0489, 4.718, 5.4562, 0.15875, 0.17145, 0.074, 3.74, 0.04712])
     theta_init_cov = 1.*np.eye(len(theta_init_mean))
 
     # init
@@ -61,7 +61,7 @@ if __name__ == '__main__':
             post_std[t, i] = cond_std
 
 
-    np.savez_compressed('data/gibbs_traj_diffstart.npz', theta_traj=theta_traj, max_iter=np.array([max_iter]), post_mean=post_mean, post_std=post_std)
+    np.savez_compressed('data/gibbs_traj_iter10000_thetafix.npz', theta_traj=theta_traj, max_iter=np.array([max_iter]), post_mean=post_mean, post_std=post_std)
 
     # chain thinning
     final_samp = theta_traj[::40, :]
